@@ -19,7 +19,7 @@ public:
             } else {
                 ans += value(s[i]);
             }
-        }  //dd
+        }  // end loop
 
         return ans;
     }
