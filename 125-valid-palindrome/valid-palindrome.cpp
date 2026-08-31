@@ -1,5 +1,5 @@
 char tolowercase(char ch ){
-    if (ch >= 'a' && ch <= 'z'){
+    if (ch >= 'a' && ch <= 'z'|| ch >= '0' && ch<= '9'){
         return ch;
     }else{
         return ch - 'A'+'a';
@@ -14,24 +14,33 @@ bool valid (char ch){
               return true; 
     }return false;
 }
+bool checkpalindrome(string a){
+
+    int s = 0 ; int e = a.size()-1;
+    while (s<e){
+      if (a[s] != a[e]){
+        return 0;
+      } else{s++;
+      e--;}
+
+    }return 1;
+}
 
 class Solution {
 public:
     bool isPalindrome(string s) {
-         int i =0; int j = s.length()-1;
-    while (i <= j){
-        if (!valid(s[i])){
-            i++;
-        }
-        else if (!valid(s[j])){
-            j--;
-        }
-        else {
-            if (tolowercase(s[i])!= tolowercase(s[j])){
-              return false;
-            } i++; j--;
+           string temp = "";
 
+    for ( int j =0 ; j < s.size(); j++){
+        if ( valid(s[j])){
+            temp.push_back(s[j]);
         }
-    }return true;
     }
+    for (int j =0; j< temp.size(); j++ ){
+
+        temp[j]= tolowercase(temp[j]);
+    }
+    return checkpalindrome(temp);
+        }
+   
 };
