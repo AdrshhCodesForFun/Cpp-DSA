@@ -18,12 +18,9 @@ public:
         string temp = "";
         string ans = "";
 
-        for (int i = 0; i <= n; i++) {
-            if (i == n){
-                temp = reverse(temp);
-                ans.append(temp);
-                temp.clear();
-            } else if (s[i] == ' ') {
+        for (int i = 0; i < n; i++) {
+
+            if (s[i] == ' ') {
                 temp = reverse(temp);
                 ans.append(temp + " ");
                 temp.clear();
@@ -31,6 +28,11 @@ public:
                 temp.push_back(s[i]);
             }
         }
+
+        temp = reverse(temp);
+        ans.append(temp);
+
+        return ans;
         return ans;
     }
 };
