@@ -1,52 +1,31 @@
 class Solution {
-private:
-    bool checkequal(int a[26], int b[26]){
-        for (int i=0; i<26; i++){
-            if (a[i]!= b[i]){
-                return 0;
-            }
-        }return 1;
-
-    }
 public:
-    bool checkInclusion(string s1, string s2) {
-        //char count for s1;
-        int count1[26]= {0};
-        for (int i=0; i<s1.size(); i++){
-            int index = s1[i] - 'a';
-            count1[index]++;
+    bool checkInclusion(string s, string p) {
+         vector<int> ans;
+        unordered_map<char, int> a ; 
+        unordered_map<char,int> b;
+        int m = s.size();
+        int n = p.size();
+        if(m > n) return false;
+        for (int i =0; i<m; i++){
+            b[s[i]]++;
         }
-        //traverse s2 string in window of size s1 length
+        for (int i =0; i<m; i++){
+            a[p[i]]++;
+        }
         int i=0;
-        int windowsize = s1.length();
-        int count2[26]={0};
-        while( i<windowsize && i<s2.length()){
-            int index = s2[i] - 'a';
-            count2[index]++;
-            i++;
-        }
-        if (checkequal(count1 , count2)){
-        return 1;}
-
-        //aage window process kre
-
-        while (i< s2.length()){
-
-            char newchar = s2[i];
-            int index = newchar -'a';
-            count2[index]++;
-
-            char oldchar = s2[i-windowsize];
-             index = oldchar -'a';
-            count2[index]--;
-            i++; 
-
-             if (checkequal(count1 , count2)){
-        return 1;}
-
-        }
-        return 0;
-
-
+        if (a==b){
+              return true;
+            }
+        for(int i=m; i<n; i++){
+            a[p[i-m]]--;
+            if(a[p[i-m]]==0){
+                a.erase(p[i-m]);
+            }
+            a[p[i]]++;
+             if (a==b){
+              return true;
+            }
+    }return false;
     }
 };
